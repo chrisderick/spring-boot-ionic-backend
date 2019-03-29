@@ -19,20 +19,31 @@ public class ItemPedidoPK implements Serializable {
     private Produto produto;
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        ItemPedidoPK that = (ItemPedidoPK) o;
-
-        if (!pedido.equals(that.pedido)) return false;
-        return produto.equals(that.produto);
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((pedido == null) ? 0 : pedido.hashCode());
+        result = prime * result + ((produto == null) ? 0 : produto.hashCode());
+        return result;
     }
 
     @Override
-    public int hashCode() {
-        int result = pedido.hashCode();
-        result = 31 * result + produto.hashCode();
-        return result;
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        ItemPedidoPK other = (ItemPedidoPK) obj;
+        if (pedido == null) {
+            if (other.pedido != null)
+                return false;
+        } else if (!pedido.equals(other.pedido))
+            return false;
+        if (produto == null) {
+            return other.produto == null;
+        } else return produto.equals(other.produto);
     }
+
 }

@@ -1,6 +1,6 @@
 package br.gov.df.chris.cg.cursomc.services.validation;
 
-import br.gov.df.chris.cg.cursomc.api.exceptions.FieldMessage;
+import br.gov.df.chris.cg.cursomc.resources.exceptions.FieldMessage;
 import br.gov.df.chris.cg.cursomc.domain.Cliente;
 import br.gov.df.chris.cg.cursomc.dto.ClienteDTO;
 import br.gov.df.chris.cg.cursomc.repositories.ClienteRepository;

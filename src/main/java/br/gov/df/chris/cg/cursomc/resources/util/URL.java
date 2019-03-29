@@ -1,4 +1,4 @@
-package br.gov.df.chris.cg.cursomc.api.util;
+package br.gov.df.chris.cg.cursomc.resources.util;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;

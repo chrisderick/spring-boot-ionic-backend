@@ -1,6 +1,6 @@
-package br.gov.df.chris.cg.cursomc.api;
+package br.gov.df.chris.cg.cursomc.resources;
 
-import br.gov.df.chris.cg.cursomc.api.util.URL;
+import br.gov.df.chris.cg.cursomc.resources.util.URL;
 import br.gov.df.chris.cg.cursomc.domain.Produto;
 import br.gov.df.chris.cg.cursomc.dto.ProdutoDTO;
 import br.gov.df.chris.cg.cursomc.services.ProdutoService;

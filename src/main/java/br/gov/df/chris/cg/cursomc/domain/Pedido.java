@@ -1,6 +1,7 @@
 package br.gov.df.chris.cg.cursomc.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -11,7 +12,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-@Getter @Setter @EqualsAndHashCode @Entity
+@Getter @Setter @Entity
 public class Pedido implements Serializable {
 
     @Id
@@ -21,7 +22,6 @@ public class Pedido implements Serializable {
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
     private Date instante;
 
-    @EqualsAndHashCode.Exclude
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "pedido")
     private Pagamento pagamento;
 
@@ -29,12 +29,11 @@ public class Pedido implements Serializable {
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 
-    @EqualsAndHashCode.Exclude
     @ManyToOne
     @JoinColumn(name = "endereco_id")
     private Endereco enderecoDeEntrega;
 
-    @EqualsAndHashCode.Exclude
+    //TODO: help
     @OneToMany(mappedBy = "id.pedido")
     private Set<ItemPedido> itens = new HashSet<>();
 
@@ -47,12 +46,34 @@ public class Pedido implements Serializable {
         this.enderecoDeEntrega = enderecoDeEntrega;
     }
 
-    public Double getValorTotal(){
-        double total = 0;
-        for (ItemPedido item: itens) {
-            total += item.getSubTotal();
+    public double getValorTotal(){
+        double total = 0.0;
+        for (ItemPedido ip: itens) {
+            total = total + ip.getSubTotal();
         }
         return total;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Pedido other = (Pedido) obj;
+        if (id == null) {
+            return other.id == null;
+        } else return id.equals(other.id);
     }
 
 }

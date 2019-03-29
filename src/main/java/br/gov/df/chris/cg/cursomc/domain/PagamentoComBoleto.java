@@ -2,6 +2,7 @@ package br.gov.df.chris.cg.cursomc.domain;
 
 import br.gov.df.chris.cg.cursomc.domain.enums.EstadoPagamento;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,6 +10,7 @@ import javax.persistence.Entity;
 import java.util.Date;
 
 @Entity @Getter @Setter
+@JsonTypeName("pagamentoComBoleto")
 public class PagamentoComBoleto extends Pagamento {
 
     @JsonFormat(pattern = "dd/MM/yyyy")
